@@ -1,0 +1,41 @@
+version: '3'
+services:
+  # mariadb:
+  #   build: requirements/mariadb/.
+  #   volumes:
+  #     - /home/lfourmau/data/mariadb
+  #   environment:
+  #     MARIADB_ROOT_PASSWORD: mariadb_root_pass
+  #     MARIADB_DATABASE: db_name
+  #     MARIADB_USER: user_name
+  #     MARIADB_PASSWORD: user_pass
+  #   networks: 
+  #           - my_network
+  #   restart: always
+  # wordpress:
+  #   build: requirements/wordpress/.
+  #   volumes:
+  #     - /home/login/data/html:/var/www/html
+  #   depends_on:
+  #     - mariadb
+  #   environment:
+  #     WORDPRESS_DB_HOST: mariadb
+  #     MARIADB_ROOT_PASSWORD: mariadb_root_pass
+  #     WORDPRESS_DB_NAME: db_name
+  #     WORDPRESS_DB_USER: user_name
+  #     WORDPRESS_DB_PASSWORD: user_pass
+  #     WORDPRESS_TABLE_PREFIX: wp_
+  #     networks: 
+  #           - my_network
+  #     restart: always
+  nginx:
+    build: requirements/nginx/.
+    ports:
+      - 80:80
+    networks: 
+            - my_network
+    restart: always
+networks:
+    my_network:
+        # use the bridge driver
+        driver: bridge
