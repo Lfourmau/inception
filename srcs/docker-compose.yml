@@ -1,39 +1,44 @@
 version: '3'
 services:
-  # mariadb:
-  #   build: requirements/mariadb/.
-  #   volumes:
-  #     - /home/lfourmau/data/mariadb
-  #   environment:
-  #     MARIADB_ROOT_PASSWORD: mariadb_root_pass
-  #     MARIADB_DATABASE: db_name
-  #     MARIADB_USER: user_name
-  #     MARIADB_PASSWORD: user_pass
-  #   networks: 
-  #           - my_network
-  #   restart: always
-  # wordpress:
-  #   build: requirements/wordpress/.
-  #   volumes:
-  #     - /home/login/data/html:/var/www/html
-  #   depends_on:
-  #     - mariadb
-  #   environment:
-  #     WORDPRESS_DB_HOST: mariadb
-  #     MARIADB_ROOT_PASSWORD: mariadb_root_pass
-  #     WORDPRESS_DB_NAME: db_name
-  #     WORDPRESS_DB_USER: user_name
-  #     WORDPRESS_DB_PASSWORD: user_pass
-  #     WORDPRESS_TABLE_PREFIX: wp_
-  #     networks: 
-  #           - my_network
-  #     restart: always
   nginx:
+    container_name: nginx
     build: requirements/nginx/.
     ports:
       - 80:80
     networks: 
             - my_network
+    restart: always
+  mariadb:
+    container_name: mariadb
+    build: requirements/mariadb/.
+    ports:
+    - 3306:3306
+    volumes:
+      - /home/lfourmau/data/mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    networks: 
+            - my_network
+    restart: always
+  wordpress:
+    container_name: wordpress
+    build: requirements/wordpress/.
+    ports:
+    - 8080:8080
+    volumes:
+      - /home/lfourmau/data/wordpress
+    depends_on:
+      - mariadb
+    environment:
+      WORDPRESS_DB_HOST: mariadb:3306
+      WORDPRESS_DB_NAME: "${MYSQL_DATABASE}"
+      WORDPRESS_DB_USER: "${MYSQL_USER}"
+      WORDPRESS_DB_PASSWORD: "${MYSQL_PASSWORD}"
+    networks: 
+           - my_network
     restart: always
 networks:
     my_network:
