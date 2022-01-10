@@ -27,7 +27,7 @@ services:
     container_name: wordpress
     build: requirements/wordpress/.
     ports:
-    - 8080:8080
+    - 9000:9000
     volumes:
       - /home/lfourmau/data/wordpress
     depends_on:
