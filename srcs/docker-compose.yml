@@ -42,5 +42,6 @@ services:
     restart: always
 networks:
     my_network:
+        name: my_network
         # use the bridge driver
         driver: bridge
