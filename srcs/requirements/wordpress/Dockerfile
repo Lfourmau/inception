@@ -7,4 +7,6 @@ RUN wget http://fr.wordpress.org/latest-fr_FR.tar.gz && tar -xzvf latest-fr_FR.t
 COPY conf/wp-config.php /var/www/lfourmau/wordpress/wp-config.php
 RUN service php7.3-fpm restart
 CMD tail -f 
+#php-fpm -F
+#fpm7.3
 

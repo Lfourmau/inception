@@ -4,7 +4,7 @@ services:
     container_name: nginx
     build: requirements/nginx/.
     ports:
-      - 80:80
+      - 443:443
     networks: 
             - my_network
     restart: always
@@ -45,3 +45,5 @@ networks:
         name: my_network
         # use the bridge driver
         driver: bridge
+
+  #volumes a definir local:
