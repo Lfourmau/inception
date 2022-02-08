@@ -5,6 +5,10 @@ services:
     build: requirements/nginx/.
     ports:
       - 443:443
+    volumes:
+      - "/home/lfourmau/data/wp_data:/var/www/html/wp_data:rw"
+    depends_on:
+      - wordpress
     networks: 
             - my_network
     restart: always
@@ -12,9 +16,9 @@ services:
     container_name: mariadb
     build: requirements/mariadb/.
     ports:
-    - 3306:3306
+      - 3306:3306
     volumes:
-      - /home/lfourmau/data/mariadb
+      - "/home/lfourmau/data/mariadb_data:/var/lib/mysql:rw"
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
       MYSQL_DATABASE: "${MYSQL_DATABASE}"
@@ -27,9 +31,10 @@ services:
     container_name: wordpress
     build: requirements/wordpress/.
     ports:
-    - 9000:9000
+      - 9000:9000
     volumes:
-      - /home/lfourmau/data/wordpress
+      - "/home/lfourmau/data/mariadb_data:/var/lib/mysql:rw"
+      - "/home/lfourmau/data/wp_data:/var/www/html/wp_data:rw"
     depends_on:
       - mariadb
     environment:
@@ -43,7 +48,4 @@ services:
 networks:
     my_network:
         name: my_network
-        # use the bridge driver
         driver: bridge
-
-  #volumes a definir local:
