@@ -7,7 +7,7 @@ RUN wget http://fr.wordpress.org/latest-fr_FR.tar.gz && tar -xzvf latest-fr_FR.t
 COPY conf/wp-config.php /var/www/html/wordpress/wp-config.php
 RUN rm /var/www/html/wordpress/wp-config-sample.php && rm latest-fr_FR.tar.gz
 RUN chown -R www-data:www-data /var/www/html/wordpress/
-RUN service php7.3-fpm restart
+RUN service php7.3-fpm start
 CMD tail -f 
 #php-fpm -F
 #fpm7.3
