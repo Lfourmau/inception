@@ -12,31 +12,30 @@ services:
     networks: 
             - my_network
     restart: always
-  #mariadb:
-  #  container_name: mariadb
-  #  build: requirements/mariadb/.
-  #  ports:
-  #    - 3306:3306
-  #  volumes:
-  #    - "/home/lfourmau/data/mariadb_data:/var/lib/mysql:rw"
-  #  environment:
-  #    MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-  #    MYSQL_DATABASE: "${MYSQL_DATABASE}"
-  #    MYSQL_USER: "${MYSQL_USER}"
-  #    MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
-  #  networks: 
-  #          - my_network
-  #  restart: always
+  mariadb:
+    container_name: mariadb
+    build: requirements/mariadb/.
+    ports:
+      - 3306:3306
+    #volumes:
+    #  - "./mariadb_data:/var/lib/mysql:rw"
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    networks: 
+            - my_network
+    restart: always
   wordpress:
     container_name: wordpress
     build: requirements/wordpress/.
     ports:
       - 9000:9000
     volumes:
-    #  - "/home/lfourmau/data/mariadb_data:/var/lib/mysql:rw"
       - "./wp_data:/var/www/html:rw"
-    #depends_on:
-    #  - mariadb
+    depends_on:
+      - mariadb
     environment:
       WORDPRESS_DB_HOST: mariadb:3306
       WORDPRESS_DB_NAME: "${MYSQL_DATABASE}"

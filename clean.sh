@@ -9,4 +9,4 @@ echo -----------CONTAINERS------------
 docker ps -a
 echo -----------IMAGES------------
 docker image ls
-rm -rf wp_data
+rm -rf wp_data && rm -rf ./mariadb_data
