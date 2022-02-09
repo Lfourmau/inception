@@ -6,7 +6,7 @@ services:
     ports:
       - 443:443
     volumes:
-      - "/Users/lfourmau/Desktop/wp_data:/var/www/html/wp:rw"
+      - "./wp_data:/var/www/html:rw"
     depends_on:
       - wordpress
     networks: 
@@ -34,7 +34,7 @@ services:
       - 9000:9000
     volumes:
     #  - "/home/lfourmau/data/mariadb_data:/var/lib/mysql:rw"
-      - "/Users/lfourmau/Desktop/wp_data:/var/www/html/wp:rw"
+      - "./wp_data:/var/www/html:rw"
     #depends_on:
     #  - mariadb
     environment:
