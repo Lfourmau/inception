@@ -6,7 +6,7 @@ services:
     ports:
       - 443:443
     volumes:
-      - "./wp_data:/var/www/html:rw"
+      - wp_volume:/var/www/html/
     depends_on:
       - wordpress
     networks: 
@@ -33,7 +33,7 @@ services:
     ports:
       - 9000:9000
     volumes:
-      - "./wp_data:/var/www/html:rw"
+      - wp_volume:/var/www/html/
     depends_on:
       - mariadb
     environment:
@@ -48,3 +48,10 @@ networks:
     my_network:
         name: my_network
         driver: bridge
+volumes:
+  wp_volume:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o : 'bind'
+      device: '/Users/lfourmau/Desktop'
