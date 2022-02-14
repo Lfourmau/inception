@@ -1,6 +1,8 @@
 #!/bin/sh
 
 docker system prune -a
+docker volume rm srcs_wp_volume
+docker volume rm srcs_db_volume
 echo -----------VOLUMES------------
 docker volume ls
 echo -----------NETWORKS------------
@@ -9,5 +11,3 @@ echo -----------CONTAINERS------------
 docker ps -a
 echo -----------IMAGES------------
 docker image ls
-rm -rf wp_data && rm -rf ./mariadb_data
-mkdir wp_data mariadb_data
