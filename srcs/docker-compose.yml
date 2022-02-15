@@ -18,7 +18,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - "db_volume:/var/lib/mysql/wp_data"
+      - "db_volume:/var/lib/mysql/"
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
       MYSQL_DATABASE: "${MYSQL_DATABASE}"
