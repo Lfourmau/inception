@@ -14,7 +14,7 @@ services:
     restart: always
   mariadb:
     container_name: mariadb
-    build: requirements/mariadb/.
+    build: ./requirements/mariadb/.
     ports:
       - 3306:3306
     volumes:
@@ -54,10 +54,10 @@ volumes:
     driver_opts:
       type: 'none'
       o : 'bind'
-      device: '/home/lfourmau/data/wp'
+      device: '/Users/lfourmau/Desktop/wp'
   db_volume:
     driver: local
     driver_opts:
       type: 'none'
       o : 'bind'
-      device: '/home/lfourmau/data/db'
+      device: '/Users/lfourmau/Desktop/db'
