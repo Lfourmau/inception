@@ -1,7 +1,8 @@
 
 
 all :
-	cd ./srcs && docker compose up --build
+	mkdir -p /home/fourmau/data/wp /home/lfourmau/data/db
+	cd ./srcs && docker compose up
 
 clean :
 	docker kill mariadb wordpress nginx
