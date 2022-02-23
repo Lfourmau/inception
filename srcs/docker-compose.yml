@@ -14,16 +14,18 @@ services:
     restart: always
   mariadb:
     container_name: mariadb
-    build: ./requirements/mariadb/.
+    build:
+      context: ./requirements/mariadb
+      args:
+        - DB_NAME=${MYSQL_DATABASE}
+        - DB_USER=${MYSQL_USER}
+        - DB_PASSWORD=${MYSQL_PASSWORD}
+        - DB_HOST=${DB_HOST}
+        - ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     ports:
       - 3306:3306
     volumes:
       - "db_volume:/var/lib/mysql/"
-    environment:
-      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-      MYSQL_DATABASE: "${MYSQL_DATABASE}"
-      MYSQL_USER: "${MYSQL_USER}"
-      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
     networks: 
             - my_network
     restart: always
