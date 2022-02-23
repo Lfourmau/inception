@@ -2,7 +2,7 @@
 
 all :
 	mkdir -p /home/lfourmau/data/wp /home/lfourmau/data/db
-	cd ./srcs && docker-compose up
+	cd ./srcs && docker-compose up --build
 
 fclean :
 	docker stop $$(docker ps -qa)
