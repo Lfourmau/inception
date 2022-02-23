@@ -1,7 +1,7 @@
 #!/bin/sh
 service php7.3-fpm start
 FILE=/var/www/html/wordpress/wp-config-sample.php
-!if [ -f "/$FILE" ]; then
+if ![ -f "/$FILE" ]; then
     echo "Existing config installed"
 else 
 	cd /var/www/html/wordpress/
