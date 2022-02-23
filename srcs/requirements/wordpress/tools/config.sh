@@ -1,5 +1,5 @@
 #!/bin/sh
-FILE=config_flag
+FILE=/var/www/html/wordpress/wp-config.php
 if [ -f "/$FILE" ]; then
     echo "Existing config installed"
 else 
@@ -12,6 +12,5 @@ else
 	wp core install --url=lfourmau.42.fr --title=MySuperMegaWebsite --admin_user=“boss” --admin_password=1234 --admin_email=boss@boss.fr --allow-root
 	wp user create lfourmau lolo@lolo.fr --role=author --user_pass=1234 --allow-root
 	service php7.3-fpm stop
-	cd / && touch config_flag
 fi
 php-fpm7.3 -F -R
