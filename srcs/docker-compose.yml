@@ -56,10 +56,10 @@ volumes:
     driver_opts:
       type: 'none'
       o : 'bind'
-      device: '/Users/lfourmau/Desktop/wp'
+      device: '/home/lfourmau/data/wp'
   db_volume:
     driver: local
     driver_opts:
       type: 'none'
       o : 'bind'
-      device: '/Users/lfourmau/Desktop/db'
+      device: '/home/lfourmau/data/db'
